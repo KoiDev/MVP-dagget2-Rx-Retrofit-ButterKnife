@@ -9,7 +9,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewStub;
 import android.widget.Toast;
@@ -63,6 +62,9 @@ public abstract class NavigationDrawerActivity extends BaseActivity implements N
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Toast.makeText(this, "Ohh " + id + " pressed!", Toast.LENGTH_SHORT).show();
+        if (id == R.id.nav_camera) {
+            ForecastFragmentActivity.start(this);
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
@@ -77,18 +79,4 @@ public abstract class NavigationDrawerActivity extends BaseActivity implements N
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.example, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

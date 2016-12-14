@@ -18,8 +18,6 @@ import retrofit2.Retrofit;
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
 
-
-
     Retrofit exposeRetrofit();
 
     Context exposeContext();
