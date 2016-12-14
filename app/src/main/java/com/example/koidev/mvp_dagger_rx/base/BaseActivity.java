@@ -11,6 +11,7 @@ import com.example.koidev.mvp_dagger_rx.application.ForecastApplication;
 import com.example.koidev.mvp_dagger_rx.dagger.components.ApplicationComponent;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @author KoiDev
@@ -20,12 +21,13 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private ProgressDialog mProgressDialog;
+    private Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState); //не понимаю этого, что-то связано с сохранением состояния?
         setContentView(getContentView());
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         onViewReady(savedInstanceState, getIntent());
     }
 
@@ -57,6 +59,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected ApplicationComponent getApplicationComponent() {
         return ((ForecastApplication) getApplication()).getApplicationComponent();
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbinder.unbind();
+        super.onDestroy();
     }
 
     protected abstract int getContentView();
