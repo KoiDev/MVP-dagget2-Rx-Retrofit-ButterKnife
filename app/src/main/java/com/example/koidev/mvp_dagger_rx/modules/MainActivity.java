@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.example.koidev.mvp_dagger_rx.R;
-import com.example.koidev.mvp_dagger_rx.base.BaseActivity;
 import com.example.koidev.mvp_dagger_rx.dagger.components.DaggerForecastComponent;
 import com.example.koidev.mvp_dagger_rx.dagger.module.ForecastModule;
 import com.example.koidev.mvp_dagger_rx.modules.adapter.ForecastAdapter;
@@ -21,7 +20,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity implements MainView {
+public class MainActivity extends NavigationDrawerActivity implements MainView {
 
     @BindView(R.id.forecast_recview)
     RecyclerView mForecastList;
@@ -46,7 +45,7 @@ public class MainActivity extends BaseActivity implements MainView {
     }
 
     @Override
-    protected int getContentView() {
+    protected int getActivityLayout() {
         return R.layout.activity_main;
     }
 
